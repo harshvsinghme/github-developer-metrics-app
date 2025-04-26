@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-const localApi = axios.create(); // no baseURL, default Next.js local API
+const localApi = axios.create();
 
 export default localApi;

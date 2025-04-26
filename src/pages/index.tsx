@@ -3,6 +3,7 @@ import { authenticate } from "@/lib/auth";
 import { useRouter } from "next/router";
 import { useUserStore } from "@/store/useUserStore";
 import Swal from "sweetalert2";
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("alice@example.com");
@@ -44,9 +45,9 @@ export default function LoginPage() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
+        <Button type="submit" className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700">
           Login
-        </button>
+        </Button>
       </form>
     </div>
   );

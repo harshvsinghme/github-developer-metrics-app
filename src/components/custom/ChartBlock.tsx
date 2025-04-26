@@ -1,14 +1,16 @@
-import { Line } from "react-chartjs-2";
 import {
-  Chart as ChartJS,
-  LineElement,
   CategoryScale,
+  Chart as ChartJS,
+  Legend,
   LinearScale,
+  LineElement,
   PointElement,
-  Tooltip,
-} from "chart.js";
+  Title,
+  Tooltip
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface ChartBlockProps {
   labels: string[];
@@ -16,30 +18,55 @@ interface ChartBlockProps {
 }
 
 export default function ChartBlock({ labels, data }: ChartBlockProps) {
+  const chartData = {
+    labels,
+    datasets: [
+      {
+        label: 'Commits',
+        data,
+        fill: false,
+        backgroundColor: 'rgb(59, 130, 246)',
+        borderColor: 'rgba(59, 130, 246, 0.5)',
+        tension: 0.1
+      }
+    ]
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const
+      },
+      title: {
+        display: true,
+        text: 'Weekly Commit Activity'
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Number of Commits'
+        }
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Week'
+        }
+      }
+    }
+  };
+
   return (
-    <Line
-      data={{
-        labels,
-        datasets: [
-          {
-            label: "Pushes per Week",
-            data,
-            borderColor: "rgba(59, 130, 246, 1)",
-            backgroundColor: "rgba(59, 130, 246, 0.5)",
-            fill: true,
-            tension: 0.3,
-          },
-        ],
-      }}
-      options={{
-        responsive: true,
-        plugins: {
-          tooltip: {
-            mode: "index" as const,
-            intersect: false,
-          },
-        },
-      }}
-    />
+    <div>
+      {labels.length > 0 ? (
+        <Line data={chartData} options={options} />
+      ) : (
+        <p className="text-center text-gray-500 py-10">No commit data available</p>
+      )}
+    </div>
   );
 }

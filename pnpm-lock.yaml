@@ -38,9 +38,6 @@ importers:
       next-nprogress:
         specifier: ^1.4.0
         version: 1.4.0(next@15.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(styled-jsx@5.1.6(react@19.1.0))
-      nprogress:
-        specifier: ^0.2.0
-        version: 0.2.0
       react:
         specifier: ^19.0.0
         version: 19.1.0
