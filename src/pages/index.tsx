@@ -6,8 +6,8 @@ import Swal from "sweetalert2";
 import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("alice@example.com");
-  const [password, setPassword] = useState("alice123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const setUserEmail = useUserStore((state) => state.setEmail);
   const router = useRouter();
 
