@@ -126,13 +126,13 @@ export default function Dashboard() {
 
         <div className="flex">
           <Button
-            className={`mr-4 px-4 py-2 rounded ${activeView === 'repository' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+            className={`mr-4 px-4 py-2 rounded ${activeView === 'repository' ? 'bg-blue-600 text-white' : 'bg-gray-500'}`}
             onClick={() => setActiveView('repository')}
           >
             Repository Overview
           </Button>
           <Button
-            className={`px-4 py-2 rounded ${activeView === 'contributors' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+            className={`px-4 py-2 rounded ${activeView === 'contributors' ? 'bg-blue-600 text-white' : 'bg-gray-500'}`}
             onClick={() => setActiveView('contributors')}
           >
             Contributor Metrics
