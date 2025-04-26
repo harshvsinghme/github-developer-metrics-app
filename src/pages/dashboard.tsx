@@ -2,6 +2,7 @@ import ChartBlock from '@/components/custom/ChartBlock';
 import ContributorTable from '@/components/custom/ContributorTable';
 import Loader from '@/components/custom/Loader';
 import MetricCard from '@/components/custom/MetricCard';
+import { Button } from '@/components/ui/button';
 import { useUserStore } from '@/store/useUserStore';
 import localApi from '@/utils/axiosInstance';
 import axios from 'axios';
@@ -124,18 +125,18 @@ export default function Dashboard() {
         </div>
 
         <div className="flex">
-          <button
+          <Button
             className={`mr-4 px-4 py-2 rounded ${activeView === 'repository' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             onClick={() => setActiveView('repository')}
           >
             Repository Overview
-          </button>
-          <button
+          </Button>
+          <Button
             className={`px-4 py-2 rounded ${activeView === 'contributors' ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
             onClick={() => setActiveView('contributors')}
           >
             Contributor Metrics
-          </button>
+          </Button>
         </div>
       </div>
 
