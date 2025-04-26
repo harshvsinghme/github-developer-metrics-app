@@ -1,4 +1,5 @@
 import githubApi from '@/utils/githubApi';
+import { StatusCodes } from 'http-status-codes';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,7 +14,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     ]);
 
     const openPRs = openPRsRes.data;
-    const commitActivity = commitActivityRes.status === 202 ? [] : commitActivityRes.data;
+    const commitActivity =
+      commitActivityRes.status === StatusCodes.ACCEPTED ? [] : commitActivityRes.data;
     const issueEvents = eventsRes.data;
 
     const openPrsAge = openPRs.length
@@ -197,7 +199,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       commits: data.commits
     }));
 
-    res.status(200).json({
+    res.status(StatusCodes.OK).json({
       openPrsAge,
       pushFrequency,
       reopenedCount,
@@ -209,7 +211,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       message: `Error fetching metrics`
     });
   }

@@ -5,6 +5,7 @@ import MetricCard from '@/components/custom/MetricCard';
 import { useUserStore } from '@/store/useUserStore';
 import localApi from '@/utils/axiosInstance';
 import axios from 'axios';
+import { StatusCodes } from 'http-status-codes';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
@@ -61,7 +62,7 @@ export default function Dashboard() {
         if (axios.isAxiosError(error)) {
           const status = error.response?.status;
 
-          if (status === 404) {
+          if (status === StatusCodes.NOT_FOUND) {
             Swal.fire({
               icon: 'error',
               title: 'Fetch Error',
